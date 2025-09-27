@@ -1,0 +1,68 @@
+server:
+  port: ${PORT:8080}
+  servlet:
+    context-path: /api
+
+spring:
+  application:
+    name: notes-saas-backend
+  
+  # Database Configuration (H2 for development, PostgreSQL for production)
+  datasource:
+    url: ${DATABASE_URL:jdbc:h2:mem:testdb}
+    driver-class-name: ${DB_DRIVER:org.h2.Driver}
+    username: ${DB_USERNAME:sa}
+    password: ${DB_PASSWORD:}
+  
+  # JPA Configuration
+  jpa:
+    hibernate:
+      ddl-auto: ${DDL_AUTO:create-drop}
+    show-sql: ${SHOW_SQL:true}
+    properties:
+      hibernate:
+        dialect: ${HIBERNATE_DIALECT:org.hibernate.dialect.H2Dialect}
+        format_sql: true
+  
+  # H2 Console (for development)
+  h2:
+    console:
+      enabled: ${H2_CONSOLE:true}
+      path: /h2-console
+
+# JWT Configuration
+jwt:
+  secret: ${JWT_SECRET:your-very-secure-secret-key-change-this-in-production}
+  expiration: ${JWT_EXPIRATION:86400000} # 24 hours in milliseconds
+
+# CORS Configuration
+cors:
+  allowed-origins: ${CORS_ORIGINS:http://localhost:3000,http://localhost:5173,https://*.vercel.app}
+  allowed-methods: ${CORS_METHODS:GET,POST,PUT,DELETE,OPTIONS}
+  allowed-headers: ${CORS_HEADERS:*}
+
+# Tenant Configuration
+app:
+  tenants:
+    acme:
+      name: "Acme Corporation"
+      slug: "acme"
+      plan: "FREE" # FREE or PRO
+    globex:
+      name: "Globex Corporation" 
+      slug: "globex"
+      plan: "FREE" # FREE or PRO
+  
+  plans:
+    free:
+      max-notes: 3
+    pro:
+      max-notes: -1 # unlimited
+
+# Logging
+logging:
+  level:
+    com.notessaas: ${LOG_LEVEL:DEBUG}
+    org.springframework.security: ${SECURITY_LOG_LEVEL:DEBUG}
+  pattern:
+    console: "%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n"
