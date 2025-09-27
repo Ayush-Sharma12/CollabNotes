@@ -1,5 +1,4 @@
 
-
 # Multi-Tenant SaaS Notes Application - Full Stack
 
 A complete **React + Spring Boot** multi-tenant SaaS notes application with JWT authentication, role-based access control, and subscription management.
