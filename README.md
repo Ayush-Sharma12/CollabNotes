@@ -189,7 +189,7 @@ The backend has a complete structure but requires implementation:
 
 ### Frontend (Already Deployed)
 
-* URL: [https://notes-saas-frontend-ten.vercel.app](https://notes-saas-frontend-ten.vercel.app)
+* URL: https://notes-saas-frontend-ten.vercel.app/
 * Status: Live and fully functional
 * Features: All requirements implemented and working
 
